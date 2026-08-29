@@ -1,0 +1,44 @@
+import { Link } from "@tanstack/react-router";
+import { Pizza, ShoppingBag } from "lucide-react";
+import { useCart } from "@/lib/cart";
+
+export function Header() {
+  const { count } = useCart();
+
+  return (
+    <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
+        <Link to="/" className="flex items-center gap-2">
+          <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-[var(--shadow-neon)]">
+            <Pizza className="size-5" />
+          </span>
+          <span className="font-display text-2xl leading-none">
+            Pizza<span className="text-primary">Hub</span>
+          </span>
+        </Link>
+
+        <nav className="flex items-center gap-1 text-sm font-medium">
+          <Link
+            to="/"
+            className="rounded-md px-3 py-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+            activeProps={{ className: "text-foreground" }}
+          >
+            Menu
+          </Link>
+          <Link
+            to="/cart"
+            className="relative ml-1 inline-flex items-center gap-2 rounded-md bg-secondary px-3 py-2 text-secondary-foreground transition-colors hover:bg-muted"
+          >
+            <ShoppingBag className="size-4" />
+            <span className="hidden sm:inline">Cart</span>
+            {count > 0 && (
+              <span className="absolute -right-1.5 -top-1.5 flex size-5 items-center justify-center rounded-full bg-accent text-[11px] font-bold text-accent-foreground">
+                {count}
+              </span>
+            )}
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
+}
