@@ -1,0 +1,119 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * PizzaHub design system — "Bold Neon Delivery"
+ * Ink black surfaces, neon red primary, electric yellow accent.
+ * All colors are oklch semantic tokens. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-glow: var(--primary-glow);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+  --font-display: "Bebas Neue", "Barlow", sans-serif;
+  --font-sans: "Barlow", ui-sans-serif, system-ui, sans-serif;
+  --shadow-neon: 0 0 0 1px
+      color-mix(in oklab, var(--primary) 35%, transparent),
+    0 18px 50px -18px color-mix(in oklab, var(--primary) 65%, transparent);
+  --shadow-glow-accent: 0 14px 40px -16px
+    color-mix(in oklab, var(--accent) 70%, transparent);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.16 0.012 285);
+  --foreground: oklch(0.975 0.003 285);
+  --surface: oklch(0.21 0.014 285);
+  --surface-foreground: oklch(0.975 0.003 285);
+  --card: oklch(0.21 0.014 285);
+  --card-foreground: oklch(0.975 0.003 285);
+  --popover: oklch(0.21 0.014 285);
+  --popover-foreground: oklch(0.975 0.003 285);
+  --primary: oklch(0.62 0.235 27);
+  --primary-foreground: oklch(0.985 0.005 90);
+  --primary-glow: oklch(0.72 0.2 40);
+  --secondary: oklch(0.27 0.016 285);
+  --secondary-foreground: oklch(0.975 0.003 285);
+  --muted: oklch(0.25 0.014 285);
+  --muted-foreground: oklch(0.72 0.014 285);
+  --accent: oklch(0.87 0.17 92);
+  --accent-foreground: oklch(0.18 0.02 90);
+  --destructive: oklch(0.62 0.235 27);
+  --destructive-foreground: oklch(0.985 0.005 90);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.62 0.235 27);
+}
+
+.dark {
+  --background: oklch(0.16 0.012 285);
+  --foreground: oklch(0.975 0.003 285);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+  }
+}
+
+@utility text-glow {
+  text-shadow: 0 0 24px color-mix(in oklab, var(--primary) 55%, transparent);
+}
+
+@utility bg-grid-noise {
+  background-image: radial-gradient(
+      circle at 15% -10%,
+      color-mix(in oklab, var(--primary) 22%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 85% 0%,
+      color-mix(in oklab, var(--accent) 14%, transparent),
+      transparent 50%
+    );
+}
